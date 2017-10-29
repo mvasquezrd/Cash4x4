@@ -1,0 +1,285 @@
+﻿@model IEnumerable<CASH.Models.VW_ADMIN_PAYMENT>
+
+@{
+    ViewBag.Title = "Dashbard";
+}
+
+@{
+    ViewBag.Title = "Payments";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>$All Payments (Benefits)</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard_3", "Dashboards" )">Home</a>
+            </li>
+            <li class="active">
+                <strong>Payments</strong>
+            </li>
+        </ol>
+    </div>
+ 
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    
+
+    <div class="ibox-content m-b-sm border-bottom">
+        
+
+     
+        <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label" for="cycle">Cycle</label>
+                                <select name="cycle" id="cycle" class="form-control">
+                                    <option value="-1">All</option>
+                                    <option value="1" >Silver</option>
+                                    <option value="2">Gold</option>
+                                    <option value="3">Platinum</option>
+                                    <option value="4">Pearl</option>
+                                    <option value="5">Emrald</option>
+                                    <option value="6">Diammond</option>
+
+
+
+
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="status">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="-1">All</option>
+                                    <option value="2" >Waiting for approval</option>
+                                    <option value="1">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+
+       
+                    </div>
+  
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-content">
+
+                                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                    <thead>
+                                        <tr>
+
+                                            <th data-toggle="true">Payment Number</th>
+                                            <th data-toggle="true">User</th>
+                                            <th data-hide="phone">Cicle</th>
+                                            <th data-hide="phone">Status</th>
+                                            <th data-hide="phone">Ammount</th>
+                                            
+                                            <th data-hide="phone">Date created</th>
+                                            <th class="text-right" data-sort-ignore="true">Action</th>
+                                            
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                   
+                                                    @item.BENEFIT_ID
+                                                </td>
+                                                <td>
+
+                                                    @item.PERSON
+                                                </td>
+
+                                                <td>
+
+                                                    @item.CYCLE_DESCRIPTION
+                                                </td>
+
+                                                  
+    <td>
+        @if (item.STATUS_DESCRIPTION.ToUpper() == "COMPLETED")
+        {
+            <span class="label label-primary">Completed</span>
+
+        }
+        else if (item.STATUS_DESCRIPTION.ToUpper() == "WAITING FOR APPROVAL")
+        {
+            <span class="label label-danger">Waiting for approval</span>
+        }
+
+
+    </td>
+
+                                                <td>
+
+                                                    @String.Concat("US $", @item.PAY)
+                                                    
+                                                </td>
+                                                <td>
+
+                                                    @item.CREATED_DATE
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn-white btn btn-xs" data-toggle="modal" data-target="#myModal">View</button>
+                                                        @*<button class="btn-white btn btn-xs">View</button>*@
+                                                        <button class="btn-white btn btn-xs">Approve</button>
+                                                        <button class="btn-white btn btn-xs">Decline</button>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                        }
+
+                                        
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="10">
+                                                <ul class="pagination pull-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Ok</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">Payment Information</h4>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                       
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Amount (<i class="fa fa-btc"></i>)</label>
+
+                                    <div class="col-sm-5"><input type="text" class="form-control"></div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Amount (<i class="fa fa-usd"></i>)</label>
+
+                                    <div class="col-sm-5"><input type="text" disabled="disabled" class="form-control"></div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Feed (<i class="fa fa-usd"></i>)</label>
+
+                                    <div class="col-sm-5"><input type="text" disabled="disabled" class="form-control"></div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Total (<i class="fa fa-usd"></i>)</label>
+
+                                    <div class="col-sm-5"><input type="text" disabled="disabled" class="form-control"></div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Hash ID</label>
+
+                                    <div class="col-sm-8"><input type="text" class="form-control"></div>
+                                </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Exact Ammount Sent (<i class="fa fa-usd"></i>)</label>
+
+                                    <div class="col-sm-6"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="comment">Comments</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="4" id="comment"></textarea>
+
+                                    </div>
+                                </div>
+                         
+                     
+                        </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Ok</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+            @section Styles {
+                @Styles.Render("~/plugins/footableStyles")
+            }
+
+            @section Scripts {
+                @Scripts.Render("~/plugins/footable")
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        debugger;
+                        $('.footable').footable();
+
+                        
+                        $(".loader").fadeOut("slow");
+
+
+                        $('#cycle').val('@ViewBag.cyle_type_id');
+                        $('#status').val('@ViewBag.status_id');
+                        $('#cycle, #status').change(function () {
+                            $(".loader").fadeIn("fast"); 
+                            location.href = "/Admin/Payments?cyle_type_id=" + $('#cycle').val() + "&status_id=" + $('#status').val();
+                            $(".loader").fadeOut("fast");
+                            return false;
+                            
+
+                   
+
+                        });
+                    });
+                </script>
+            }
+
+
+

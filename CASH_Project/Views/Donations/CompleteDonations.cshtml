@@ -1,0 +1,292 @@
+﻿@model CASH.Models.VW_COMPLETE_DONATION
+
+
+
+@{
+    ViewBag.Title = "Complete Donations";
+}
+
+@*<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>$Donations</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard_2", "Dashboards")">Home</a>
+            </li>
+           
+            <li class="active">
+                <strong>Complete Donations</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>*@
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Complete Donation</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div class="list-group">
+                        <a class="list-group-item active">
+                            <b><h3 class="list-group-item-heading">IMPORTANT!</h3></b>
+
+                            <p class="list-group-item-text">Your first donation recipient may change if you reload this page. We have made every effort to assign members the proper position in your team and in order to prevent any problems we ask that when you are ready to upgrade, please send your payment to the member shown and do not close this window until you submit the form below.</p>
+                        </a>
+                    
+                        <a class="list-group-item">
+                            <h3 class="list-group-item-heading">DONATION FOR : <span style="color:red;font-weight:700">@Model.DONATION_TO</span></h3>
+                            </a>
+                            
+                            <a class="list-group-item">
+                                <h3 class="list-group-item-heading">Submit the transaction hash ID</h3>
+
+                                <p class="list-group-item-text">
+
+                                    <b>Cash 4X4</b> is not responsible for any liability incurred by not using Coinpayments.
+                                    This system features automatic payment approval which takes 30-60 minutes.
+                                    Your upgrade will not be in effect until donation is validated and approved by the system.
+                                    All donations are voluntarily and final. Refunds are not available.
+                                    Communication about the upgrade process, donation and approval is between you and the payee only.
+                                    <font color="red"> <b>WARNING!</b> </font>If <b>Cash 4X4</b> system is not suitable for you or you suspect fraud, do not proceed anymore.
+                                    We have carefully read the above and donate according to the <b>Cash 4X4</b> system.
+                                    The moment you make a donation,<b>Cash 4X4</b> assume that you have consented to our system.
+                                </p>
+                            </a>
+
+
+
+</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Donation to Cash 4X4</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        @*<div class="form-group">
+                            <label class="col-sm-3 control-label">Amount (<i class="fa fa-btc"></i>)</label>
+
+                            <div class="col-sm-5"><input id="txtAmmountBTC"  type="text" class="form-control"></div>
+                        </div>*@
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Amount (<i class="fa fa-usd"></i>)</label>
+
+                            <div class="col-sm-5"><input  type="text" value="@String.Concat("US $", @Math.Round(@Model.AMMOUNT, 2).ToString())" disabled="disabled" class="form-control"></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Feed (<i class="fa fa-usd"></i>)</label>
+
+                            <div class="col-sm-5"><input type="text" value="@Model.FEED" disabled="disabled" class="form-control"></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Total (<i class="fa fa-usd"></i>)</label>
+
+                            <div class="col-sm-5"><input type="text" value=" @String.Concat("US $", @Math.Round(@Model.TOTAL.Value, 2).ToString())" disabled="disabled" class="form-control"></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Hash ID</label>
+
+                            <div class="col-sm-8"><input id="txtHashID" maxlength="300" type="text" class="form-control"></div>
+                        </div>
+
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Exact Ammount Sent (<i class="fa fa-btc"></i>)</label>
+
+                            <div class="col-sm-6"><input id="txtExactAmmountSent" maxlength="20"  type="text" class="form-control"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="comment">Comments</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="4" maxlength="50" id="comment"></textarea>
+
+                            </div>
+                        </div>
+                  
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                            <button class="btn btn-primary" id="btnProcess" type="submit">Process</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>CASH 4x4 Details</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Name </label>
+
+                            <div class="col-sm-9">
+                            <input type="text" value="Cash 4x4 Group" disabled="disabled" class="form-control">
+                            
+                            </div>
+                        </div>
+
+                        @*<div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Contact Number</label>
+
+                            <div class="col-sm-9"><input type="text" disabled="disabled" class="form-control"></div>
+                        </div>*@
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Email</label>
+
+                            <div class="col-sm-9"><input type="text" value="noreply@cash4x4.com" disabled="disabled" class="form-control"></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Bit coin Address</label>
+
+                            <div class="col-sm-9"><input type="text" id="txtAddress" disabled="disabled" class="form-control"></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div id="googleapis"><img src="https://chart.googleapis.com/chart?chs=250x250&amp;cht=qr&amp;chl=bitcoin:1A5iCBsdfsdfsdfMXPJF7esUssyartteraeLsfdsdfspTocoyW2EK6n?&amp;amount=0.0292825659429&amp;message=donation"></div>                        </div>
+
+                     
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        
+            $.post("/Admin/GetCashAddres", function (res) {
+                if (res != undefined && res != null) {
+                    debugger;
+                    $("#txtAddress").val(res);
+                }
+
+            });
+            $.ajaxSetup({
+                beforeSend: function () { $(".loader").fadeIn("fast"); },
+                complete: function () { $(".loader").fadeOut("fast"); }
+            });
+
+
+
+            $("#btnProcess").click(function () {
+
+
+                if ($("#txtAmmountBTC").val() == "") {
+                    ShowAlert("Please enter the <b style='color: #e67070;'>Amount (<i class='fa fa-btc'></i>)</b>", undefined, txtAmmountBTC); return false;
+
+                }
+
+            
+
+                if ($("#txtHashID").val() == "") {
+                    ShowAlert("Please enter the <b style='color: #e67070;'>Hash ID</b>", undefined, txtHashID); return false;
+
+                }
+
+
+                if ($("#txtExactAmmountSent").val() == "") {
+                    ShowAlert("Please enter the <b style='color: #e67070;'>Exact Ammount Sent ($)</b>", undefined, txtExactAmmountSent); return false;
+
+                }
+
+
+
+
+                
+                var params = {
+                    donationid:parseInt(@Model.DONATION_ID.ToString()),
+                    hash: $("#txtHashID").val(),
+                    comment: $("#comment").val(),
+                    btcammount: $("#txtExactAmmountSent").val()
+                    
+               }
+
+
+
+
+
+                $.post("/Donations/Process", params, function (_respond) {
+                    if (_respond._respond == null || _respond._respond == undefined || _respond._respond == "bad") {
+                        
+                        $(".loader").fadeOut("fast");
+                        ShowAlert("The transaction could not be completed at this time, pleae try later or contact our customer service.", undefined, undefined);
+                        return false;
+                    } else {
+                        $(".loader").fadeOut("fast");
+                        ShowAlert("we confirm the transaction has been successfully received", "/Dashboards/Dashboard_2", undefined); return false;
+                        
+
+
+                    }
+
+
+                }).fail(function(xhr, status, error) {
+                    ShowAlert(error.toString(), undefined, undefined);
+                });
+                
+                return false;
+
+
+            });
+
+
+        });
+    </script>
+
+
+
+

@@ -1,0 +1,416 @@
+﻿@model CASH.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Sign Up";
+}
+@{ 
+
+    Layout = "~/Views/Shared/_ExternalLayout.cshtml";
+
+        }
+
+@*<link rel="stylesheet" href="build/css/countrySelect.css">*@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9 page-heading-external-text">
+        <h2 style="font-weight:700">User Register</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a><strong style="color:#f8ac59">Sponsor Name</strong></a>
+            </li>
+            <li>
+                <strong style="color:#ED5565">@ViewBag.SponsorName</strong>
+            </li>
+            <li >
+                
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-3 page-heading-external">
+
+        <div class="photos">
+            <img style="width:216px;height:81px;border-radius:20px 20px 20px 20px; margin-top:10px" src="~/Images/bitcoinaceptedhere2.jpeg" />
+            
+            
+        </div>
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+     
+  
+
+
+        <div class="row main-form">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Please complete the fields listed below.</h5>
+
+                    </div>
+                    <div style="background-color:#f6f6f6" class="ibox-content">
+                        <div class="form-horizontal">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>First Name</label>
+
+                                        <div class="col-md-8"><input id="txtFirstName" maxlength="75" type="text" class="form-control"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Last Name</label>
+
+                                        <div class="col-md-8"><input id="txtLastName" type="text" class="form-control"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>User Name</label>
+
+                                        <div class="col-md-8">
+                                            <input id="txtUserName" type="text" class="form-control">
+                                            <label id="useravailable"></label>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Password</label>
+
+                                        <div class="col-md-5"><input id="txtPassword" type="password" class="form-control example1"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Confirm Password  </label>
+
+                                        <div class="col-md-5"><input id="txtConfirmPassword" type="password" class="form-control"></div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Email</label>
+
+                                        <div class="col-md-8">
+                                            <div class="input-group m-b"><span class="input-group-addon email">&#64;</span> <input id="txtEmail" type="email" class="form-control"></div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Confirm Email</label>
+
+                                        <div class="col-md-8">
+                                            <div class="input-group m-b"><span class="input-group-addon email">&#64;</span> <input type="email" id="txtConfirmEmail" class="form-control"></div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Mobile</label>
+
+                                        <div class="col-md-8"><input type="tel" id="txtMobile" class="form-control"></div>
+                                    </div>
+
+                                    @*<div class="form-group">
+        <label class="col-sm-3 control-label"><span class="required-field">*</span>Country</label>
+
+        <div class="col-md-8"><input type="text" class="form-control" id="country"></div>
+    </div>*@
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Country</label>
+                                        <div class="col-md-8">
+                                            @*<select class="form-control m-b">
+                                                <option>Tech Support</option>
+                                                <option>Sales</option>
+                                                <option>Payments</option>
+
+                                            </select>*@
+                                            @*@Html.DropDownListFor(model => model.ROLE, new SelectList(ViewBag.Roles, "key", "value", (Model.ROLEID == null ? 0 : Model.ROLEID)), htmlAttributes: new { @class = "form-control" })*@
+                                            @Html.DropDownListFor(model => model.Country, new SelectList(ViewBag.Countries, "key", "value"), htmlAttributes: new { @class = "form-control",@id="country" })
+                                            
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><span class="required-field">*</span>Gender</label>
+
+                                        <div class="col-md-8">
+
+                                            @*<input type="text" class="form-control">*@
+                                            <div class="radio radio-info radio-inline">
+                                                <input type="radio" id="rbtnSexMale" value="option1" name="radioInline" checked="checked">
+                                                <label style="padding-right:20px; padding-left:1px;" for="rbtnSexMale"> Male </label>
+                                            </div>
+                                            <div class="radio radio-danger radio-inline">
+                                                <input type="radio" id="rbtnSexFemale" value="option1" name="radioInline">
+                                                <label style="padding-right:20px; padding-left:1px;" for="rbtnSexFemale"> Female </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <div class="form-group">
+                                        <div class="col-lg-2 col-sm-offset-2">
+                                            <label>I Accept</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="i-checks">
+                                                <label style="font-size: smaller;cursor: pointer;color: blue;text-decoration: underline;" class="">
+                                                    <div class="icheckbox_square-green" style="position: relative;">
+                                                        <input type="checkbox" id="chkAcceptTermsUse" style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div><i></i> Terms of Use
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="i-checks">
+                                                <label style="font-size: smaller;cursor: pointer;color: blue;text-decoration: underline;" class="">
+                                                    <div class="icheckbox_square-green" style="position: relative;">
+                                                        <input type="checkbox" id="chkAcceptPricacyPolicy" style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div><i></i> Privacy Policy
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-2 col-sm-offset-2">
+                                            <button id="btnSignUp" class="btn btn-primary btn-block">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#country").val(61);
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+            $("#txtUserName").blur(function () {
+                if ($("#txtUserName").val() != "") {
+                    $.post("/SignUp/UserNameExists", { userName: $("#txtUserName").val() }, function (_response) {
+                        if (_response == "True") {
+                            $("#useravailable").text("User name not available");
+                            $("#useravailable").removeClass("validuser");
+                            $("#useravailable").addClass("novaliduser");
+                            
+                            return false;
+                        } else {
+                            $("#useravailable").text("User name available");
+                            $("#useravailable").removeClass("novaliduser");
+                            $("#useravailable").addClass("validuser");
+                         
+                             return false;
+                        }
+                    });
+                }
+
+              
+
+            });
+           
+
+
+            $("#btnSignUp").click(function () {
+
+
+                if ($("#txtFirstName").val() == "" ) {
+                    // alertify.alert("Please Enter your<b style='color: #e67070;'> First Name</b>", function (e) { if (e) { $("#txtFirstName").focus(); } }); return false;
+                    ShowAlert("Please enter your<b style='color: #e67070;'> First Name</b>", undefined, txtFirstName); return false;
+                }
+
+                if ($("#txtLastName").val() == "") {
+                    //alertify.alert("Please Enter your<b style='color: #e67070;'> Last Name</b>", function (e) { if (e) { $("#txtLastName").focus(); } }); return false;
+                    ShowAlert("Please enter your<b style='color: #e67070;'> Last Name</b>", undefined, txtLastName); return false;
+                }
+                if ($("#txtUserName").val() == "") {
+                    // alertify.alert("Please Enter your<b style='color: #e67070;'> User Name</b>", function (e) { if (e) { $("#txtUserName").focus(); } }); return false;
+                    ShowAlert("Please enter your<b style='color: #e67070;'> User Name</b>", undefined, txtUserName); return false;
+                }
+
+                
+                    if ($("#useravailable").hasClass("novaliduser") || $("#useravailable").text() == "User name not available") {
+                       // alertify.alert("Please Enter another<b style='color: #e67070;'> User Name</b> this is not available.", function (e) { if (e) { $("#txtUserName").focus(); } });
+                        ShowAlert("Please enter another<b style='color: #e67070;'> User Name</b> this is not available.", undefined, txtUserName); return false;
+                        //$("#txtUserName").val("");
+                        //$("#txtUserName").text("");
+                        return false;
+                        
+                    }
+               
+
+
+
+                if ($("#txtPassword").val() == "" || $("#txtPassword").val().toString().length < 4) {
+                    // alertify.alert("Please Enter a valid<b style='color: #e67070;'> Password</b> (Minumun 5 digits)", function (e) { if (e) { $("#txtPassword").focus(); } }); return false;
+                    ShowAlert("Please enter a valid<b style='color: #e67070;'> Password</b> (Minumun 5 digits)", undefined, txtPassword); return false;
+                }
+
+                if ($("#txtConfirmPassword").val() == "" || $("#txtConfirmPassword").val().toString().length < 4) {
+                    //alertify.alert("Please Enter a valid Confirmation<b style='color: #e67070;'> Password</b> (Minumun 5 digits)", function (e) { if (e) { $("#txtConfirmPassword").focus(); } }); return false;
+                    ShowAlert("Please enter a valid <b style='color: #e67070;'>Confirmation Password</b> (Minumun 5 digits)", undefined, txtPassword); return false;
+                }
+
+                if ($("#txtPassword").val() != $("#txtConfirmPassword").val()) {
+
+                    ShowAlert("Please verify Password Confirmation", undefined, txtConfirmPassword);
+                    $("#txtPassword").val("")
+                    $("#txtConfirmPassword").val("");
+                    return false;
+                   
+                }
+
+                if ($("#txtEmail").val() == "" || isEmail($("#txtEmail").val()) == false) {
+                    //   alertify.alert("Please Enter a valid <b style='color: #e67070;'>Email</b>", function (e) { if (e) { $("#txtEmail").focus(); } }); return false;
+                    ShowAlert("Please enter a valid <b style='color: #e67070;'>Email</b>", undefined, txtEmail); return false;
+                }
+                if ($("#txtConfirmEmail").val() == "" || isEmail($("#txtConfirmEmail").val()) == false) {
+                    //alertify.alert("Please Enter a valid <b style='color: #e67070;'>Email</b> Confirmation", function (e) { if (e) { $("#txtConfirmEmail").focus(); } }); return false;
+                    ShowAlert("Please enter a valid <b style='color: #e67070;'>Email Confirmation</b>", undefined, txtConfirmEmail); return false;
+                }
+
+                if ($("#txtEmail").val() != $("#txtConfirmEmail").val()) {
+
+
+                    ShowAlert("Please verify Email Confirmation", undefined, txtEmail);
+                    $("#txtEmail").val("")
+                    $("#txtConfirmEmail").val("");
+                    return false;
+
+                  
+                }
+
+              
+           
+                if ($("#txtMobile").val() == "") {
+                    //  alertify.alert("Please Enter your<b style='color: #e67070;'> Mobile Number</b>", function (e) { if (e) { $("#txtMobile").focus(); } }); return false;
+                    ShowAlert("Please enter your<b style='color: #e67070;'> Mobile Number</b>", undefined, txtMobile); return false;
+                }
+
+                if ($("#country").val() == "") {
+                    //alertify.alert("Please Enter your<b style='color: #e67070;'> Country</b>", function (e) { if (e) { $("#country").focus(); } }); return false;
+                    ShowAlert("Please enter your<b style='color: #e67070;'> Country</b>", undefined, country); return false;
+                }
+                if (!$("#chkAcceptTermsUse").is(":checked")) {
+                    //alertify.alert("You must accept <b style='color: #e67070;'>Terms of Use</b> Confirmation", function (e) { if (e) { $("#chkAcceptTermsUse").focus(); } }); return false;
+                    ShowAlert("You must accept <b style='color: #e67070;'>Terms of Use</b> Confirmation", undefined, chkAcceptTermsUse); return false;
+                }
+
+                if (!$("#chkAcceptPricacyPolicy").is(":checked")) {
+                    //alertify.alert("You must accept our<b style='color: #e67070;'> Privacy Policy</b> Confirmation", function (e) { if (e) { $("#chkAcceptPricacyPolicy").focus(); } }); return false;
+                    ShowAlert("You must accept our<b style='color: #e67070;'> Privacy Policy</b> Confirmation", undefined, chkAcceptPricacyPolicy); return false;
+                }
+
+                
+                var params = {
+                    FirstName:$("#txtFirstName").val(),
+                    LastName: $("#txtLastName").val(),
+                    UserName: $("#txtUserName").val(),
+                    Password: $("#txtPassword").val(),
+                    Email: $("#txtEmail").val(),
+                    Mobile: $("#txtMobile").val(),
+                    Country: parseInt($("#country").val()),
+                    Gender: ($("#rbtnSexMale").is(":checked") ? "M": "F")
+
+                }
+
+
+
+
+
+
+                //var params = {
+                //    FirstName: "Name",
+                //    LastName: "LastName",
+                //    UserName: "UserName",
+                //    Password: "Pass",
+                //    Email: "Email",
+                //    Mobile: "Mobile",
+                //    Country: "Country",
+                //    Gender: "M"
+
+                //}
+
+
+               
+
+
+                $.post("/SignUp/CreateUser", params, function (_respond) {
+                    if (_respond == "False" || _respond == null) {
+                        $(".loader").fadeOut("fast");
+
+                        ShowAlert("We cannot create your user at this time, please try later or contact our customer service.", undefined, undefined); return false;
+                        //alertify.alert("We cannot create your user at this time, please try later or contact our customer service.", function () {
+                        //    window.location.href = '/Login/Login';
+                        //});
+                    } else {
+                        $(".loader").fadeOut("fast");
+                        //alertify.alert("User created!");
+                        ShowAlert("User created!", "/Login/Login", undefined); return false;
+
+                    }
+
+
+                });
+
+               
+            });
+
+              
+
+        });
+
+    
+       // $body = $("body");
+
+       //$(document).on({
+       //     ajaxStart: function () { $body.addClass("loading"); },
+       //     ajaxStop: function () {
+       //         $body.removeClass("loading");
+
+       //     }
+       // });
+
+ 
+    </script>
+
+}
+
+

@@ -1,0 +1,284 @@
+﻿@model CASH.Models.VW_USER_DASHBOARD
+
+@{
+    ViewBag.Title = "Dashbard";
+}
+@{
+
+    List<CASH.Models.VW_USER_REFERRAL_SUMMARY> referralsummary = ViewData["ReferralSummary"] as List<CASH.Models.VW_USER_REFERRAL_SUMMARY>;
+    
+}
+<div class="wrapper wrapper-content">
+    <div class="row">
+
+        <div class="col-lg-4">
+            <a href="/Benefits/Benefits">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">All</span>
+                        <h5 style="font-weight:500 ;  color: rgb(51, 122, 183) !important;">BALANCE</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 style="color:#23527c !important;" class="no-margins">@String.Concat("US $", @Model.BALANCE)</h1>
+                        <div class="stat-percent font-bold text-danger">Total</div>
+                    </div>
+                </div>
+                </a>
+</div>
+
+        <div class="col-lg-4">
+            <a href="/Benefits/Benefits">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">All</span>
+                        <h5 style="font-weight:500; ">BENEFIT RECEIVED</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 style="color:#23527c !important;" class="no-margins" >@String.Concat("US $", @Model.TOTAL_BENEFIT)</h1>
+                        <div class="stat-percent font-bold text-danger">Total</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <a href="/Donations/Donations">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">All</span>
+                        <h5 style="font-weight:500">MY DONATIONS</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 style="color:#23527c !important;" class="no-margins" >@String.Concat("US $", @Model.TOTAL_DONATION)</h1>
+                        <div class="stat-percent font-bold text-danger">Total</div>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+
+   
+
+  
+        @*<div class="col-lg-3">
+            <a href="/Referrals/Referrals">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">All</span>
+                        <h5 style="font-weight:500 !important">DIRECT REFERRALS</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h2 class="no-margins"> @Model.TOTAL_REFERRALS</h2>
+                        <div class="stat-percent font-bold text-danger">Total</div>
+                    </div>
+                </div>
+            </a>
+</div>*@
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="contact-box center-version">
+                <a style="cursor:default">
+                <h3 class="m-b-xs"><strong>MY SPONSOR</strong></h3>
+                    
+                </a>
+
+                <a  style="cursor:default; padding-bottom:5px !important">
+                    
+                    @*<img alt="image" class="img-circle" src="~/Images/a2.jpg">*@
+                    <img alt="image" class="img-circle" src='@Url.Action("GetImage", "Profile", new { USER_ID = @Model.SPONSOR_ID })'>
+
+                    
+
+
+                    <h3 class="m-b-xs"><strong>@Model.SPONSOR_FULL_NAME</strong></h3>
+                 <address class="m-t-md">
+                        <span class="text-warning glyphicon glyphicon-envelope"></span>  <strong>Email</strong><br>
+                            @Model.EMAIL<br>
+                        <span class="text-danger glyphicon glyphicon-phone"></span><strong>Mobile</strong><br>
+                            @Model.MOBILE<br>
+                     <span class="text-info glyphicon glyphicon-star-empty"></span><strong>Level</strong><br>
+                        @Model.SPONSOR_LEVEL<br>
+
+                        
+
+                            
+</address>
+
+                </a>
+                @*<div class="contact-box-footer">
+                    <div class="m-t-xs btn-group">
+                       
+                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                    
+                    </div>
+                </div>*@
+
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="contact-box center-version">
+
+
+                <div class="col-sm-12 col-lg-offset-2">
+                    <div class="col-sm-8">
+
+
+                        <div style="padding-top: 25px;" class="form-group">
+                            <div class="text-center">
+
+                                <i class="text-info glyphicon glyphicon-globe fa-3x"></i>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="text-center">
+
+                                <h3 class="m-b-xs"><strong>MY REFERAL LINK</strong></h3>
+                                <div class="ibox-title">
+                                    <small>Copy this link and send to your referals.</small>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <br>
+                <br>
+                <br>
+
+
+                <div class="form-group">
+                    <div class="text-center">
+
+                        <h4>
+                           <a href="@ViewBag.hreflink" style="    text-decoration: none;    color: #337ab7; cursor: pointer;">
+                               @ViewBag.Referrallink
+                               
+                            </a></h4>
+
+                        </div>
+</div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+    <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h3 class="m-b-xs"><strong>REFERRAL SUMMARY</strong></h3> 
+                        
+                        
+                        <table class="footable table table-stripped toggle-arrow-tiny no-paging footable-loaded tablet" data-page-size="15">
+                            <thead>
+                                <tr>
+
+                                    <th class="footable-visible footable-sortable footable-first-column">Level<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Donation<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Referrals to complete<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Referrals<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Balance<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Received<span class="footable-sort-indicator"></span></th>
+                                    <th data-hide="phone" class="footable-visible footable-sortable">Potential<span class="footable-sort-indicator"></span></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+@foreach (var item in referralsummary)
+{
+                                <tr class="footable-even" style="display: table-row;">
+                                    <td class="footable-visible footable-first-column">
+                                        <span class="footable-toggle"></span>
+                                        @Html.DisplayFor(modelItem => item.CYCLE_DESCRIPTION)
+                                    </td>
+                                    <td class="footable-visible">
+                                       @String.Format("{0:n}", @String.Concat("US $", item.AMMOUNT))
+                                    </td>
+                                    <td class="footable-visible">
+                                        4
+                                    </td>
+                                    <td class="footable-visible">
+                                        @Html.DisplayFor(modelItem => item.REFERRALS)
+                                    </td>
+
+                                    <td class="footable-visible">
+                                        @String.Concat("US $", @item.BALANCE)
+                                    </td>
+
+                                    <td class="footable-visible">
+                                        @String.Concat("US $", @item.RECEVIED)
+                                    </td>
+
+                                    <td class="footable-visible">
+                                        @String.Concat("US $", @item.BENEFIT_AMMOUNT)
+                                    </td>
+
+                                </tr>
+
+}
+                             
+                   
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7" class="footable-visible">
+                                        <ul class="pagination pull-right"><li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page active"><a data-page="0" href="#">1</a></li><li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+@section Scripts {
+
+
+    @Scripts.Render("~/plugins/vectorMap")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".loader").fadeOut("fast");
+        
+        
+
+       
+        });
+    </script>
+}

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CASH 4X4 | @ViewBag.Title</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+        {@RenderSection("Styles", required: false)}
+     
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+
+    <!-- Primary Inspinia style -->     
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+    
+</head>
+<body>
+
+    <!-- Skin configuration box -->
+    <!-- @Html.Partial("_SkinConfig") -->
+
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" class="@Html.PageClass()">
+
+        <!-- Navigation -->
+        @*@Html.Partial("_Navigation")*@
+
+        <!-- Page wraper -->
+        <div id="page-wrapper2" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Top Navbar -->
+            @*@Html.Partial("_TopNavbar")*@
+
+            <!-- Main view  -->
+            @RenderBody()
+
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+
+            @*<div class="photos">
+            <img style="width:70%;border-radius:20px 20px 20px 20px; margin-top:10px" src="~/Images/bitcoinaceptedhere2.jpeg" />
+            
+            
+        </div>*@
+
+
+        </div>
+        <!-- End page wrapper-->
+
+        <!-- Right Sidebar -->
+        @Html.Partial("_RightSidebar")
+
+    </div>
+    <!-- End wrapper-->
+
+    <!-- Section for main scripts render -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+
+    <!-- Skin config script - only for demo purpose-->
+    @Scripts.Render("~/bundles/skinConfig")
+
+    <!-- Handler for local scripts -->
+
+    @RenderSection("scripts", required: false)
+   
+    <div class="loader">
+
+
+    </div>
+    <div class="modal inmodal" id="myModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-laptop modal-icon text-info "></i>
+                    <h4 class="modal-title"><b>Information</b></h4>
+                    @*<small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>*@
+                </div>
+                <div class="modal-body">
+                    <p id="information">
+                    </p>
+                    @*<div class="form-group"><label>Sample Input</label> <input type="email" placeholder="Enter your email" class="form-control"></div>*@
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>*@
+                    <button id="btnAlert" type="button" data-dismiss="modal" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".loader").fadeOut("slow");
+        
+        });
+        $.ajaxSetup({
+            beforeSend: function () { $(".loader").fadeIn("fast"); },
+            complete: function () { $(".loader").fadeOut("fast"); }
+        });
+
+    </script>
+</body>
+</html>

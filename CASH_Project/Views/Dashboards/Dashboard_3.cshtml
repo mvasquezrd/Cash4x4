@@ -1,0 +1,199 @@
+﻿@model CASH.Models.VW_ADMIN_DASHBOARD
+
+@{
+    ViewBag.Title = "Dashboard v.3";
+    ViewBag.SpecialClass = "sidebar-content";
+}
+
+
+
+    @*<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                     
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-5">
+                            <div class="m-t-sm">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-sm offset1"><i class="fa fa-briefcase"></i> Donations</a>
+
+                                </div>
+                                <div class="btn-group">
+
+                                    <a href="#" style="border: 3px solid #e7eaec" class="btn btn-white btn-sm"> <i class="fa fa-diamond"></i>Benefits</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="row">
+                            <canvas id="lineChart" height="70"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+    <div class="row">
+        <a href="/Admin/Payments">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">All</span>
+                        <h5>Payments</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@Model.PAYMENT_WAITING_FOR_APPROVAL</h1>
+                        <div class="stat-percent font-bold text-danger">Waiting for Approval </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">Today</span>
+                    <h5>Donations</h5>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@String.Format("{0:n}", @String.Concat("US $", @Model.DONATIONS))</h1>
+                        <div class="stat-percent font-bold text-info">Received</div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">Today</span>
+                    <h5>New Users</h5>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@Model.NEWUSERS</h1>
+                        <div class="stat-percent font-bold text-warning">Already paid</div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Today</span>
+                        <h5>Vistits</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@Model.VISITS</h1>
+                        <div class="stat-percent font-bold text-navy">Total</div>
+
+
+                    </div>
+                </div>
+            </div>
+   
+
+            <div class="col-lg-3">
+                <div style="pointer-events: none;opacity: 0.5;  background: #CCC;" class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right"></span>
+                        <h5>Managment Report</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">View</h1>
+
+
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chartJs")
+    @Scripts.Render("~/plugins/peity")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".line").peity("line", {
+                fill: '#1ab394',
+                stroke: '#169c81',
+            })
+
+            $(".bar").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"]
+            })
+
+            $(".bar_dashboard").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"],
+                width: 100
+            })
+
+            var lineData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        label: "Donations",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [12065, 18259, 12580, 19981, 17956, 19855, 19840]
+                    },
+                    {
+                        label: "Benefits",
+                        fillColor: "rgba(26,179,148,0.5)",
+                        strokeColor: "rgba(26,179,148,0.7)",
+                        pointColor: "rgba(26,179,148,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(26,179,148,1)",
+                        data: [17428, 15748, 19840, 15819, 18486, 16827, 10990]
+                    }
+                ]
+            };
+
+            var lineOptions = {
+                scaleShowGridLines: true,
+                scaleGridLineColor: "rgba(0,0,0,.05)",
+                scaleGridLineWidth: 1,
+                bezierCurve: true,
+                bezierCurveTension: 0.4,
+                pointDot: true,
+                pointDotRadius: 4,
+                pointDotStrokeWidth: 1,
+                pointHitDetectionRadius: 20,
+                datasetStroke: true,
+                datasetStrokeWidth: 2,
+                datasetFill: true,
+                responsive: true
+            };
+
+
+            var ctx = document.getElementById("lineChart").getContext("2d");
+            var myNewChart = new Chart(ctx).Line(lineData, lineOptions);
+
+        });
+    </script>
+}

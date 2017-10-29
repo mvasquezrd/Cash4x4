@@ -1,0 +1,165 @@
+﻿@model IEnumerable<CASH.Models.GET_REFERRALSResult>
+
+
+
+@{
+    ViewBag.Title = "View Tree";
+}
+
+<script src="~/Scripts/app/loader.js"></script>
+<script type="text/javascript">
+
+    google.charts.load('current', {
+        callback: function () {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Manager');
+            data.addColumn('string', 'ToolTip');
+
+
+
+            var Referrals = JSON.parse('@Html.Raw(@ViewBag.ReferralsJson)');
+            var countref=0;
+            $.each(Referrals, function (i, item) {
+
+                //  data.addRows([[{
+                //      v: '' + Referrals[i].PERSON_ID + '',
+                //      f: '<a style="cursor: default;"><img src="/Images/person_icon_white.png" /> ' + Referrals[i].PERSON + '' +
+                //          '<div style="color:red; font-style:italic"><b>' + ((Referrals[i].LEVEL == "MAIN") ? '(Sponsor)' : '') + '</b> <b style="font-size: larger;color: black;">' + Referrals[i].PERSON_LEVEL + '</b> </div></a>'
+                //  }, '' + Referrals[i].SPONSOR_ID + '', 'Sponsor'], ]
+
+                //);
+
+                data.addRows([[{
+                    v: '' + Referrals[i].PERSON_ID + '',
+                    f: '<a style="cursor: default;"><img src="/Images/person_icon_white.png" /> ' + Referrals[i].PERSON + '' +
+                        '<div style="color:red; font-style:italic">' + ((Referrals[i].LEVEL == "MAIN") ? '<b>(Sponsor)</b>' : '') + ' <span style="display: block;" class="label label-success">' + Referrals[i].PERSON_LEVEL + '</span></div></a>'
+                }, '' + Referrals[i].SPONSOR_ID + '', 'Sponsor'], ]
+
+      );
+
+                countref = countref + 1;
+
+
+            });
+
+            //No data
+            if (countref == 1) {
+                $("#nodatatodisplay").show();
+                $("#chart_div").hide();
+
+            }
+            else {
+
+                $("#nodatatodisplay").hide();
+                $("#chart_div").show();
+            }
+
+            
+            
+
+            var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+
+            // set selection on 'ready' and 'select'
+            google.visualization.events.addListener(chart, 'ready', setSelection);
+            google.visualization.events.addListener(chart, 'select', setSelection);
+
+            function setSelection() {
+                chart.setSelection([{ row: -1 }]);
+            }
+            chart.draw(data, { allowHtml: true, nodeClass: "UserNode", enableInteractivity: false });
+
+            // chart.draw(data, { allowHtml: true });
+        },
+        packages: ['orgchart']
+    });
+
+
+    function cycleChange(control) {
+        var selectedvalue = control.value;
+        //window.location.href = " Url.Action("Referrals", "Referrals", new { CYCLE_TYPE_ID = selectedvalue })";
+        window.location.href = "/Referrals/Referrals?CYCLE_TYPE_ID="+selectedvalue;
+        //var msg = control.value == "100" ? "Having a Baby!!" : "Common message";
+        //document.getElementById("message").innerHTML = msg;
+    }
+
+    $(document).ready(function () {
+        $('#cycle').val("@ViewBag.Cycletypeid");
+
+    });
+
+</script>
+<style>
+    .UserNode {
+        /*background-color: black;*/
+        /*background-image: url('../../Images/person_icon_white.png');
+        border-radius: 50%;*/
+        /*height: 48px;
+        color: #337ab7;*/
+        color: #337ab7;
+        font-size:10px;    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+
+ 
+        <div class="col-sm-4">
+            <h2>Referrals</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Dashboard_2", "Dashboards")">Home</a>
+                </li>
+                <li class="active">
+                    <strong>My Referrals</strong>
+                </li>
+
+            </ol>
+
+
+        </div>
+
+  
+      
+    </div>
+   
+<div class="row">
+    <div class="col-lg-6">
+
+        <div class="form-group" style="padding-top:10px">
+            <label class="col-sm-2 control-label" for="status">My Cycle</label>
+            <div class="col-sm-7">
+                <select name="cycle" id="cycle" onchange="cycleChange(this)" class="form-control">
+                    <option value="1" selected>Silver</option>
+                    <option value="2">Gold</option>
+                    <option value="3">Platinum</option>
+                    <option value="4">Pearl</option>
+                    <option value="5">Emrald</option>
+                    <option value="6">Diammond</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+     
+    </div>
+
+        <div class="col-lg-12">
+
+
+
+            <div class="wrapper wrapper-content">
+
+
+
+                <div id="chart_div">
+                    
+                </div>
+                <div id="nodatatodisplay" class="row">
+                    <div style="color:red" class="col-md-2 col-md-offset-5">
+                        No data to display
+                    </div>
+                </div>
+               
+
+            </div>
+        </div>
+    </div>

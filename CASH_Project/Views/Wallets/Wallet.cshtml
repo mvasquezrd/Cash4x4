@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "Wallet";
+}
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Wallet</h2>
+        <ol class="breadcrumb">
+                        <li>
+                            <a href="@Url.Action("Dashboard_2", "Dashboards")">Home</a>
+            </li>
+            
+
+            <li class="active">
+                <strong>Register Wallet</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+    
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    My Wallet
+                </div>
+                <div class="ibox-content">
+
+                    <div class="panel-group payments-method" id="accordion">
+                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="pull-right">
+                                    
+                                    <i class="fa fa-btc text-warning"></i>
+                                    
+                                </div>
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Bit Coin</a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse in">
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                      
+                                        <div class="col-lg-12">
+
+                                            <form role="form" id="payment-form">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>WEB SITE</label>
+                                                            <div class="input-group">
+                                                                <input  id="txturl" class="form-control" placeholder="https://www.blockchain.com"  />
+                                                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label>WALLET NAME</label>
+            <input type="text" class="form-control" id="txtwalletname" />
+        </div>
+    </div>
+</div><div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label>ADDRESS</label>
+            <input type="text" class="form-control" id="txtaddress" />
+        </div>
+    </div>
+</div>
+                                          
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <button id="btnRegisterwallet" class="btn btn-primary" type="submit">Register!</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+!-- Section for main scripts render -->
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/plugins/slimScroll")
+@Scripts.Render("~/bundles/inspinia")
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+
+        $("#btnRegisterwallet").click(function () {
+            
+
+            if ($("#txturl").val() == "" ) {
+                //alertify.alert("Please enter the url of your <b style='color: #e67070;'> wallet</b> ", function (e) { if (e) { $("#txturl").focus(); } }); return false;
+                ShowAlert("Please enter the url of your <b style='color: #e67070;'> wallet</b>", undefined , txturl); return false;
+            }
+
+            if ($("#txtwalletname").val() == "" ) {
+                //alertify.alert("Please enter a name for your<b style='color: #e67070;'> wallet</b>", function (e) { if (e) { $("#txtwalletname").focus(); } }); return false;
+                ShowAlert("Please enter a name for your<b style='color: #e67070;'> wallet</b>", undefined, txtwalletname); return false;
+            }
+            if ($("#txtaddress").val() == "") {
+
+                //alertify.alert("Please enter the address of your<b style='color: #e67070;'> wallet</b>", function (e) { if (e) { $("#txtaddress").focus(); } }); return false;
+                ShowAlert("Please enter the address of your<b style='color: #e67070;'> wallet</b>", undefined, txtaddress); return false;
+            }
+
+         
+            
+
+
+
+            var params = {
+                url: $("#txturl").val(),
+                walletname: $("#txtwalletname").val(),
+                walletaddress: $("#txtaddress").val()
+            }
+
+
+
+
+
+
+
+            $.post("/Wallets/RegisterWallet", params, function (res) {
+                debugger;
+                if (res == "False" || res== null) {
+                    
+                    $(".loader").fadeOut("fast");
+                    //alertify.alert("You cannot register your wallet at this time, please try later or contact our customer service.", function () {
+                    //    window.location.href = '/Login/Login';
+                    //});
+
+                    ShowAlert("You cannot register your wallet at this time, please try later or contact our customer service.", undefined, undefined); return false;
+
+
+                } else {
+                    $(".loader").fadeOut("fast");
+                    //alertify.alert("Wallet registered!", function () {
+                    //    window.location.href = '/Dashboards/Dashboard_2';
+                    //});
+
+                    ShowAlert("Wallet registered!", "/Dashboards/Dashboard_2", undefined); return false;
+
+                }
+
+
+            });
+            return false;
+
+
+        });
+
+
+
+    });
+
+</script>

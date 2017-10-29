@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CASH" Class="MainModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=CASH;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CASHConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BENEFIT" Member="BENEFITs">
+    <Type Name="BENEFIT">
+      <Column Name="BENEFIT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID_BENEFITED" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MOVEMENT_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="APPROVED_BY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WALLET_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AMMOUNT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="AMMOUNT_BTC" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="FEED" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="HASH_ID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EXACT_AMMOUNT_SENT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="COMMENT" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CASH_BTC_ADDRESS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="BENEFIT_STATUS_BENEFIT" Member="BENEFIT_STATUS" ThisKey="STATUS_ID" OtherKey="STATUS_ID" Type="BENEFIT_STATUS" IsForeignKey="true" />
+      <Association Name="CYCLE_TYPE_BENEFIT" Member="CYCLE_TYPE1" ThisKey="CYCLE_TYPE" OtherKey="CYCLE_TYPE_ID" Type="CYCLE_TYPE" IsForeignKey="true" />
+      <Association Name="WALLET_BENEFIT" Member="WALLET" ThisKey="WALLET_ID" OtherKey="WALLET_ID" Type="WALLET" IsForeignKey="true" />
+      <Association Name="USER_BENEFIT" Member="USER" ThisKey="USER_ID_BENEFITED" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BENEFIT_STATUS" Member="BENEFIT_STATUS">
+    <Type Name="BENEFIT_STATUS">
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="BENEFIT_STATUS_BENEFIT" Member="BENEFITs" ThisKey="STATUS_ID" OtherKey="STATUS_ID" Type="BENEFIT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COUNTRY" Member="COUNTRies">
+    <Type Name="COUNTRY">
+      <Column Name="COUNTRY_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="COUNTRY_CODE" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="COUNTRY_NAME" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="PHONE_CODE" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="COUNTRY_USER" Member="USERs" ThisKey="COUNTRY_ID" OtherKey="COUNTRY_ID" Type="USER" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CYCLE_TYPE" Member="CYCLE_TYPEs">
+    <Type Name="CYCLE_TYPE">
+      <Column Name="CYCLE_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CYCLE_DESCRIPTION" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="COIN" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="AMMOUNT" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="CYCLE_TYPE_BENEFIT" Member="BENEFITs" ThisKey="CYCLE_TYPE_ID" OtherKey="CYCLE_TYPE" Type="BENEFIT" />
+      <Association Name="CYCLE_TYPE_DONATION" Member="DONATIONs" ThisKey="CYCLE_TYPE_ID" OtherKey="CYCLE_TYPE" Type="DONATION" />
+      <Association Name="CYCLE_TYPE_REFERRAL_SPONSOR" Member="REFERRAL_SPONSORs" ThisKey="CYCLE_TYPE_ID" OtherKey="CYCLE_TYPE_ID" Type="REFERRAL_SPONSOR" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONATION" Member="DONATIONs">
+    <Type Name="DONATION">
+      <Column Name="DONATION_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WALLET_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AMMOUNT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="AMMOUNT_BTC" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="FEED" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="HASH_ID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EXACT_AMMOUNT_SENT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="COMMENT" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CASH_BTC_ADDRESS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="CYCLE_TYPE_DONATION" Member="CYCLE_TYPE1" ThisKey="CYCLE_TYPE" OtherKey="CYCLE_TYPE_ID" Type="CYCLE_TYPE" IsForeignKey="true" />
+      <Association Name="DONATION_STATUS_DONATION" Member="DONATION_STATUS" ThisKey="STATUS_ID" OtherKey="STATUS_ID" Type="DONATION_STATUS" IsForeignKey="true" />
+      <Association Name="WALLET_DONATION" Member="WALLET" ThisKey="WALLET_ID" OtherKey="WALLET_ID" Type="WALLET" IsForeignKey="true" />
+      <Association Name="USER_DONATION" Member="USER" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONATION_STATUS" Member="DONATION_STATUS">
+    <Type Name="DONATION_STATUS">
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="DONATION_STATUS_DONATION" Member="DONATIONs" ThisKey="STATUS_ID" OtherKey="STATUS_ID" Type="DONATION" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOGINS" Member="LOGINs">
+    <Type Name="LOGIN">
+      <Column Name="LOGIN_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BEGIN_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="END_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="USER_LOGIN" Member="USER" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PARAMETER" Member="PARAMETERs">
+    <Type Name="PARAMETER">
+      <Column Name="PARAMETER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VAL_INT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VAL_VARCHAR" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REFERRAL_SPONSOR" Member="REFERRAL_SPONSORs">
+    <Type Name="REFERRAL_SPONSOR">
+      <Column Name="REFERRAL_SPONSOR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="REFERRAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SPONSOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="CYCLE_TYPE_REFERRAL_SPONSOR" Member="CYCLE_TYPE" ThisKey="CYCLE_TYPE_ID" OtherKey="CYCLE_TYPE_ID" Type="CYCLE_TYPE" IsForeignKey="true" />
+      <Association Name="USER_REFERRAL_SPONSOR" Member="USER" ThisKey="SPONSOR_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+      <Association Name="USER_REFERRAL_SPONSOR1" Member="USER1" ThisKey="REFERRAL_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TICKET" Member="TICKETs">
+    <Type Name="TICKET">
+      <Column Name="TICKET_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DEPARTMENT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COMMENT" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="TICKET_TICKET" Member="TICKET2" ThisKey="TICKET_ID" OtherKey="TICKET_ID" Type="TICKET" Cardinality="One" />
+      <Association Name="TICKET_TICKET" Member="TICKET1" ThisKey="TICKET_ID" OtherKey="TICKET_ID" Type="TICKET" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USER_TYPE" Member="USER_TYPEs">
+    <Type Name="USER_TYPE">
+      <Column Name="USER_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WALLET" Member="WALLETs">
+    <Type Name="WALLET">
+      <Column Name="WALLET_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WALLET_WEB_SITE" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="WALLET_NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="WALLET_ADDRESS" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="WALLET_BENEFIT" Member="BENEFITs" ThisKey="WALLET_ID" OtherKey="WALLET_ID" Type="BENEFIT" />
+      <Association Name="WALLET_DONATION" Member="DONATIONs" ThisKey="WALLET_ID" OtherKey="WALLET_ID" Type="DONATION" />
+      <Association Name="USER_WALLET" Member="USER" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ERROR" Member="ERRORs">
+    <Type Name="ERROR">
+      <Column Name="ERROR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ERROR_STACK_TRACE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ERROR_MESSAGE_DESCRIPTION" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EXCEPTION" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USER_PHOTO" Member="USER_PHOTOs">
+    <Type Name="USER_PHOTO">
+      <Column Name="USER_PHOTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="USER_USER_PHOTO" Member="USER" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USER_IDENTIFICATION" Member="USER_IDENTIFICATIONs">
+    <Type Name="USER_IDENTIFICATION">
+      <Column Name="USER_IDENTIFICATION_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDENTIFICATION_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDENTIFICATION" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FILE_NAME" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="USER_USER_IDENTIFICATION" Member="USER" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_DONATION" Member="VW_DONATIONs">
+    <Type Name="VW_DONATION">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONATION_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONATION_TO" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AMMOUNT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_COMPLETE_DONATION" Member="VW_COMPLETE_DONATIONs">
+    <Type Name="VW_COMPLETE_DONATION">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONATION_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONATION_TO" Type="System.String" DbType="VarChar(206) NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AMMOUNT" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="FEED" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USERS" Member="USERs">
+    <Type Name="USER">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FIRST_NAME" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="LAST_NAME" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="USERNAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HASH_PASS" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MOBILE" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="GENDER" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="COUNTRY_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PHOTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDENTIFICATION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SPONSOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AUTOMATIC_SPONSOR_ID" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="REFERRAL_LINK_HASH" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_USER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFIED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MODIFIED_USER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DELETED" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HOSTNAME" AutoSync="Never" Type="System.String" DbType="VarChar(30) NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="USER_BENEFIT" Member="BENEFITs" ThisKey="USER_ID" OtherKey="USER_ID_BENEFITED" Type="BENEFIT" />
+      <Association Name="USER_DONATION" Member="DONATIONs" ThisKey="USER_ID" OtherKey="USER_ID" Type="DONATION" />
+      <Association Name="USER_LOGIN" Member="LOGINs" ThisKey="USER_ID" OtherKey="USER_ID" Type="LOGIN" />
+      <Association Name="USER_REFERRAL_SPONSOR" Member="REFERRAL_SPONSORs" ThisKey="USER_ID" OtherKey="SPONSOR_ID" Type="REFERRAL_SPONSOR" />
+      <Association Name="USER_REFERRAL_SPONSOR1" Member="REFERRAL_SPONSORs1" ThisKey="USER_ID" OtherKey="REFERRAL_ID" Type="REFERRAL_SPONSOR" />
+      <Association Name="USER_WALLET" Member="WALLETs" ThisKey="USER_ID" OtherKey="USER_ID" Type="WALLET" />
+      <Association Name="USER_USER_PHOTO" Member="USER_PHOTOs" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER_PHOTO" />
+      <Association Name="USER_USER_IDENTIFICATION" Member="USER_IDENTIFICATIONs" ThisKey="USER_ID" OtherKey="USER_ID" Type="USER_IDENTIFICATION" />
+      <Association Name="COUNTRY_USER" Member="COUNTRY" ThisKey="COUNTRY_ID" OtherKey="COUNTRY_ID" Type="COUNTRY" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_USER_DASHBOARD" Member="VW_USER_DASHBOARDs">
+    <Type Name="VW_USER_DASHBOARD">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TOTAL_DONATION" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TOTAL_BENEFIT" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TOTAL_REFERRALS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="REFERRAL_LINK_HASH" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MOBILE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SPONSOR_FULL_NAME" Type="System.String" DbType="VarChar(141)" CanBeNull="true" />
+      <Column Name="SPONSOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BALANCE" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SPONSOR_LEVEL" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_BENEFIT" Member="VW_BENEFITs">
+    <Type Name="VW_BENEFIT">
+      <Column Name="USER_ID_BENEFITED" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BENEFIT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_DESCRIPTION" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MOVEMENT_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MOVEMENT_TYPE_DESCRIPTION" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="STATUS_DESCRIPTION" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AMMOUNT" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_USER_REFERRAL_SUMMARY" Member="VW_USER_REFERRAL_SUMMARies">
+    <Type Name="VW_USER_REFERRAL_SUMMARY">
+      <Column Name="CYCLE_DESCRIPTION" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AMMOUNT" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="REFERRALS_NEEDED_TO_COMPLETE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="REFERRALS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RECEVIED" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="BENEFIT_AMMOUNT" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="BALANCE" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_ADMIN_DASHBOARD" Member="VW_ADMIN_DASHBOARDs">
+    <Type Name="VW_ADMIN_DASHBOARD">
+      <Column Name="PAYMENT_WAITING_FOR_APPROVAL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONATIONS" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="NEWUSERS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VISITS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_ADMIN_PAYMENTS" Member="VW_ADMIN_PAYMENTs">
+    <Type Name="VW_ADMIN_PAYMENT">
+      <Column Name="BENEFIT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERSON" Type="System.String" DbType="VarChar(141) NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_DESCRIPTION" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CYCLE_TYPE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_DESCRIPTION" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="APPROVED_BY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APPROVED_BY" Type="System.String" DbType="VarChar(141)" CanBeNull="true" />
+      <Column Name="AMMOUNT_BTC" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="FEED" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Decimal(12,8)" CanBeNull="true" />
+      <Column Name="HASH_ID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EXACT_AMMOUNT_SENT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="COMMENT" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="PAY" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GET_REFERRALS" Method="GET_REFERRALS">
+    <Parameter Name="SPONSOR_ID" Parameter="sPONSOR_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CYCLE_TYPE_ID" Parameter="cYCLE_TYPE_ID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_REFERRALSResult">
+      <Column Name="PERSON_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERSON" Type="System.String" DbType="VarChar(141) NOT NULL" CanBeNull="false" />
+      <Column Name="PERSON_LEVEL" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SPONSOR" Type="System.String" DbType="VarChar(141) NOT NULL" CanBeNull="false" />
+      <Column Name="SPONSOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[LEVEL]" Member="LEVEL" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="ORDEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SET_DONATION_STATUS_COMPLETE" Method="SET_DONATION_STATUS_COMPLETE">
+    <Parameter Name="DONATION_ID" Parameter="dONATION_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DONATION_STATUS" Parameter="dONATION_STATUS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AMMOUNT_BTC" Parameter="aMMOUNT_BTC" Type="System.Decimal" DbType="Decimal(18,8)" />
+    <Parameter Name="HASH_ID" Parameter="hASH_ID" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="CASH_BTC_ADDRESS" Parameter="cASH_BTC_ADDRESS" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="COMMENT" Parameter="cOMMENT" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="MODIFIED_DATE" Parameter="mODIFIED_DATE" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GET_AUTOMATIC_SPONSOR" Method="GET_AUTOMATIC_SPONSOR" IsComposable="true">
+    <Parameter Name="USER_ID" Parameter="uSER_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CYCLE_TYPE_ID" Parameter="cYCLE_TYPE_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

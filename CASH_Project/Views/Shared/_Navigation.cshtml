@@ -1,0 +1,135 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                   
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span>
+                            @*<img alt="image" class="img-circle" src="~/Images/profile_small.jpg" />*@
+                            <img id="imgprofile" alt="image" class="img-circle" style="width:80px;height:80px;" src='@Url.Action("GetImageProfile", "Profile")' />
+                        </span>
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold"><span id="FullName"></span></strong>
+                            
+                        </span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="@Url.Action("Profile", "Profile")">Profile</a></li>
+          <li><a href="@Url.Action("ChangePassword", "Profile")">Change Password</a></li>
+        @*<li><a href="@Url.Action("Inbox", "Mailbox")">Mailbox</a></li>*@
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("LogOff", "Login")">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    $
+                </div>
+            </li>
+         
+            <li class="@Html.IsSelected(controller: "Dashboards")">
+                <a href="@Url.Action("Dashboard_2", "Dashboards")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.metrics">Dashboard</span><span class="label label-info pull-right">Resume</span></a>
+            </li>
+
+
+            <li class="@Html.IsSelected(controller: "Wallets")">
+                <a href="#"><i class="fa fa-money"></i> <span class="nav-label" data-i18n="nav.ecommerce">My Wallets</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Wallets", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Wallet")"><a href="@Url.Action("Wallet", "Wallets")">BitCoin Wallet</a></li>
+                    @*<li class="@Html.IsSelected(action: "UpdateWallet")"><a href="@Url.Action("UpdateWallet", "Wallets")">Update Wallet</a></li>*@
+
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Profile")">
+                <a href="#"><i class="fa fa-user"></i> <span class="nav-label" data-i18n="nav.ecommerce">My Profile</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Profile", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Profile")"><a href="@Url.Action("Profile", "Profile")">Edit Profile</a></li>
+                    <li class="@Html.IsSelected(action: "ChangePassword")"><a href="@Url.Action("ChangePassword", "Profile")">Change Password</a></li>
+
+                </ul>
+            </li>
+   
+            <li class="@Html.IsSelected(controller: "Donations")">
+                <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label" data-i18n="nav.ecommerce">Donations</span><span class="fa arrow"></span><span style="display:none;" id="PendingDonation" class="label label-warning pull-right"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Donations", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Donations")"><a href="@Url.Action("Donations", "Donations")">Donation detail</a></li>
+                    
+
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Benefits")">
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label" data-i18n="nav.ecommerce">My Benefits</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Benefits", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Benefits")"><a href="@Url.Action("Benefits", "Benefits")">Benefits detail</a></li>
+
+
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Referrals")">
+                <a href="@Url.Action("Referrals", "Referrals")"><i class="fa fa-group"></i> <span class="nav-label" data-i18n="nav.metrics">My Referrals</span> </a>
+            </li>
+            <li class="@Html.IsSelected(controller: "Tutorials")">
+                <a href="@Url.Action("Tutorials", "Tutorials")"><i class="fa fa-book"></i> <span class="nav-label" data-i18n="nav.widgets">Tutorials</span> </a>
+            </li>
+            <li class="@Html.IsSelected(controller: "Tickets")">
+                <a href="@Url.Action("Tickets", "Tickets")"><i class="fa fa-question-circle"></i> <span class="nav-label" data-i18n="nav.widgets">Help desk</span> </a>
+            </li>
+    
+
+            @if (@Session["USER_TYPE"] != null) { 
+             if (int.Parse(@Session["USER_TYPE"].ToString()) == 2) { 
+                <li class="@Html.IsSelected(controller: "Admin")">
+                <a href="@Url.Action("Dashboard_3", "Dashboards")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.widgets">Admin</span> </a> 
+               
+            </li>
+             }
+            }
+
+
+            @*<li class="@Html.IsSelected(controller: "Admin")">
+                <a href="#"><i class="fa fa-cog"></i> <span class="nav-label" data-i18n="nav.ecommerce">Admin</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Admin", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Dashboard_3")"><a href="@Url.Action("Dashboard_3", "Dashboards")"><i class="fa fa-th-large"></i> Admin Dashboard</a></li>
+                    <li class="@Html.IsSelected(action: "Transactions")"><a href="@Url.Action("Transactions", "Admin")">All Transactions</a></li>
+                    <li class="@Html.IsSelected(action: "Payments")"><a href="@Url.Action("Payments", "Admin")">Payments<span class="label label-success pull-right">2 Waiting for approval</span></a></li>
+                    
+                    
+
+                </ul>
+            </li>*@
+        </ul>
+    </div>
+</nav>
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+
+        $(".loader").fadeOut("slow");
+        $.post("/Profile/GetUserInfo", function (r) {
+            debugger;
+            var _res = r.split('|');
+            $("#FullName").text(_res[0].toString());
+            if (_res.length > 1) {
+                $("#PendingDonation").text(_res[1].toString() + " pending");
+                $("#PendingDonation").css("display", "block");
+
+            } else {
+                $("#PendingDonation").text("");
+                $("#PendingDonation").css("display", "none");
+
+            }
+            
+            
+        });
+        });
+        $.ajaxSetup({
+            beforeSend: function () { $(".loader").fadeIn("fast"); },
+            complete: function () { $(".loader").fadeOut("fast"); }
+        });
+
+</script>

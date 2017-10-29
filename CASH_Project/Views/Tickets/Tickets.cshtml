@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Tickets";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Ticket Center</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard_2", "Dashboards")">Home</a>
+            </li>
+            <li class="active">
+                <strong>Tickets</strong>
+            </li>
+        </ol>
+    </div>
+ 
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    
+                    
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Create New Ticket
+                        </button>
+                    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <i class="fa fa-laptop modal-icon"></i>
+                                    <h4 class="modal-title">Create new Ticket</h4>
+                                    
+                                </div>
+                                <div class="modal-body">
+                                   
+                                    <div class="form-group">
+                                        <label class="control-label">Department</label>
+                                        <div class="input-group col-sm-12">
+                                            <select class="form-control m-b">
+                                                <option>Tech Support</option>
+                                                <option>Sales</option>
+                                                <option>Payments</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group"><label>Comment</label> <textarea class="form-control" rows="4" id="comment"></textarea></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        
+        </div>
+        
+        
+            @*<h2>Ticket Search</h2>
+
+        
+        
+        
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="order_id">Ticket ID</label>
+                    <input type="text" id="order_id" name="order_id"  class="form-control">
+                </div>
+            </div>
+          
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="date_added">Date added</label>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="09/25/2017">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" >Department</label>
+                    <div class="input-group col-sm-12">
+                        <select class="form-control m-b">
+                            <option>Tech Support</option>
+                            <option>Sales</option>
+                            <option>Payments</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+
+         
+        </div>*@
+  
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+
+                                <th>Ticket ID</th>
+                                <th data-hide="phone">Comment</th>
+                                <th data-hide="phone">Department</th>
+                                <th data-hide="phone">Date added</th>
+                                
+                              
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Este es un comment largo...asd.as.d.as.d
+                                </td>
+                                <td>
+                                   Tech Support
+                                </td>
+                                <td>
+                                    03/04/2017
+                                </td>
+                               
+                               
+                              
+                            </tr>
+                
+                    
+                   
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+@section Styles {
+    @Styles.Render("~/plugins/footableStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/footable")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.footable').footable();
+
+        });
+    </script>
+}

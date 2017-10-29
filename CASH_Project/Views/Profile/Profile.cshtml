@@ -1,0 +1,610 @@
+﻿@model CASH.Models.UserViewModel
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>My Profile</h2>
+        <ol class="breadcrumb">
+                        <li>
+                            <a href="@Url.Action("Dashboard_2", "Dashboards")">Home</a>
+            </li>
+            
+
+            <li class="active">
+                <strong>Edit Profile</strong>
+            </li>
+        </ol>
+    </div>
+  
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+        <ul class="nav nav-tabs">
+
+            <li class="active"><a data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Personal Information</a></li>
+            <li class=""><a data-toggle="tab" href="#tab-2"><i class="fa fa-credit-card"></i> Upload Identification</a></li>
+            <li class=""><a data-toggle="tab" href="#tab-3"><i class="fa fa-camera"></i> Upload Photo</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        
+
+                            <div class="ibox-content">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+
+                                                <form role="form" class="form-horizontal">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>First Name</label>
+
+                                                                <div class="col-md-8"><input type="text" id="txtFirstName" value="@Model.FirstName" class="form-control"></div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Last Name</label>
+
+                                                                <div class="col-md-8"><input type="text" id="txtLastName" value="@Model.LastName" class="form-control"></div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>User Name</label>
+
+                                                                <div class="col-md-8"><input type="text" id="txtUserName" value="@Model.UserName"  disabled="disabled" class="form-control"></div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Email</label>
+
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group m-b"><span class="input-group-addon email">&#64;</span> <input id="txtEmail" value="@Model.Email"  type="text" class="form-control"></div>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Confirm Email</label>
+
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group m-b"><span class="input-group-addon email">&#64;</span> <input id="txtConfirmEmail" value="@Model.Email" type="text" class="form-control"></div>
+
+                                                                </div>
+                                                            </div>
+                                                    
+
+                                                        </div>
+
+
+                                                        <div class="col-lg-6">
+                                                         
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Mobile</label>
+
+                                                                <div class="col-md-8"><input type="text" id="txtMobile" value="@Model.Mobile" class="form-control"></div>
+                                                            </div>
+
+                                                                                 <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Country</label>
+                                                                <div class="col-md-8">
+                                                                    
+                                                                    
+                                                                    @Html.DropDownListFor(model => model.Country, new SelectList(ViewBag.Countries, "key", "value"), htmlAttributes: new { @class = "form-control", @id = "country" })
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label"><span class="required-field">*</span>Gender</label>
+
+                                                                <div class="col-md-8">
+
+                                                                    @*<input type="text" class="form-control">*@
+                                                                    <div class="radio radio-info radio-inline">
+                                                                        <input type="radio" id="rbtnSexMale" value="option1" name="radioInline" checked="checked">
+                                                                        <label style="padding-right:20px; padding-left:1px;" for="rbtnSexMale"> Male </label>
+                                                                    </div>
+                                                                    <div class="radio radio-danger radio-inline">
+                                                                        <input type="radio" id="rbtnSexFemale" value="option1" name="radioInline">
+                                                                        <label style="padding-right:20px; padding-left:1px;" for="rbtnSexFemale"> Female </label>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                      
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div id="tab-2" class="tab-pane">
+
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="ibox">
+
+                            <div class="ibox-content">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                      
+                                                          
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-2 btn btn-primary" for="fuLoadIdentification">
+                                                                        <input type="file" class="file" onchange="readURLDocument(this);" id="fuLoadIdentification" style="display:none;" />
+                                                                        Upload identification
+                                                                    </label>
+
+                                                                    <div class="col-md-8">
+                                                                        <ul class="list-unstyled">
+                                                                            <li><a href="/Profile/DownloadIdentification"><i></i> <span class="form-control" id="lblIdentificationName"></span></a></li></ul>
+</div>
+                                                                </div>
+                                                                
+
+
+
+
+
+
+
+                                                   
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tab-3" class="tab-pane">
+
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="ibox">
+
+                            <div class="ibox-content">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-2 col-md-offset-5">
+                                                                <div class="form-group">
+                                                                   
+                                                                        <div class="col-md-12" id="DivImage">
+                                                                            
+                                                                            <img id="blah" class="img-circle" style="height: 112px; width: 112px; object-fit: contain" src='@Url.Action("GetImageProfile", "Profile")' />
+                                                                            @*<img alt="image" class="img-circle" style="width:80px;height:80px;" src='@Url.Action("GetImageProfile", "Profile")' />*@
+                                                                      
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <label class="btn btn-primary" for="fuLoadImage">
+                                                                            <input type="file" class="file" accept="image/*" onchange="readURL(this, 'blah');" id="fuLoadImage" style="display:none;" />
+                                                                            Upload photo
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                           
+
+
+
+                                                            </div>
+
+
+                                                                </div>
+
+                                                            </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="margin-top:20px" class="col-sm-offset-11">
+                    <button id="btnUpdate" class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+     
+    </div>
+</div>
+                                        @section Styles {
+                                            @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+                                            @Styles.Render("~/plugins/awesomeCheckboxStyles")
+                                        }
+
+                                        @section Scripts {
+                                            @Scripts.Render("~/plugins/iCheck")
+
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+                                                    $("#country").val(@Model.Country);
+
+                                                    $("#lblIdentificationName").val("@ViewBag.IdentificationFileName");
+                                                    $("#lblIdentificationName").text("@ViewBag.IdentificationFileName");
+
+
+                                                    //$("#lblIdentificationName").click(function () {
+                                                    //    if ($("#lblIdentificationName") != "") {
+                                                    //      //  debugger;
+                                                           
+                                                    //    }
+                
+
+                                                    //});
+                                                   
+       
+
+
+                                                    $('.i-checks').iCheck({
+                                                        checkboxClass: 'icheckbox_square-green',
+                                                        radioClass: 'iradio_square-green',
+                                                    });
+
+
+
+
+                                                    $("#btnUpdate").click(function () {
+
+
+                                                        if ($("#txtFirstName").val() == "") {
+                                                            ShowAlert("Please enter your<b style='color: #e67070;'> First Name</b>", undefined, txtFirstName); return false;
+                                                        }
+
+                                                        if ($("#txtLastName").val() == "") {
+                                                            ShowAlert("Please enter your<b style='color: #e67070;'> Last Name</b>", undefined, txtLastName); return false;
+                                                        }
+
+
+
+
+
+
+
+                                                        if ($("#txtEmail").val() == "" || isEmail($("#txtEmail").val()) == false) {
+                                                            ShowAlert("Please enter a valid <b style='color: #e67070;'>Email</b>", undefined, txtEmail); return false;
+                                                        }
+                                                        if ($("#txtConfirmEmail").val() == "" || isEmail($("#txtConfirmEmail").val()) == false) {
+                                                            ShowAlert("Please enter a valid <b style='color: #e67070;'>Email Confirmation</b>", undefined, txtConfirmEmail); return false;
+                                                        }
+
+                                                        if ($("#txtEmail").val() != $("#txtConfirmEmail").val()) {
+
+
+                                                            ShowAlert("Please verify Email Confirmation", undefined, txtEmail);
+                                                            $("#txtEmail").val("")
+                                                            $("#txtConfirmEmail").val("");
+                                                            return false;
+                                                        }
+
+
+
+                                                        if ($("#txtMobile").val() == "") {
+                                                            ShowAlert("Please enter your<b style='color: #e67070;'> Mobile Number</b>", undefined, txtMobile); return false;
+                                                        }
+
+                                                        if ($("#country").val() == "") {
+                                                            ShowAlert("Please enter your<b style='color: #e67070;'> Country</b>", undefined, country); return false;
+                                                        }
+
+
+                                                        var params = {
+                                                            FirstName: $("#txtFirstName").val(),
+                                                            LastName: $("#txtLastName").val(),
+                                                            UserName: null,
+                                                            Password: null,
+                                                            Email: $("#txtEmail").val(),
+                                                            Mobile: $("#txtMobile").val(),
+                                                            Country: parseInt($("#country").val()),
+                                                            Gender: ($("#rbtnSexMale").is(":checked") ? "M" : "F")
+
+                                                        }
+
+
+
+
+
+                                                        $.post("/Profile/UpdateUser", params, function (_respond) {
+                                                            if (_respond == "False" || _respond == null) {
+                                                                $(".loader").fadeOut("fast");
+                                                                //alertify.alert("We cannot update your user at this time, please try later or contact our customer service.", function () {
+                                                                //    window.location.href = '/Dashboards/Dashboard_2';
+                                                                //});
+                                                                ShowAlert("We cannot create your user at this time, please try later or contact our customer service.", '/Dashboards/Dashboard_2', undefined); return false;
+
+                                                            } else {
+                                                                $(".loader").fadeOut("fast");
+                                                                $('#imgprofile').attr('src', $('#imgprofile').attr('src') + '?' + Math.random());
+                                                               // debugger;
+                                                                ShowAlert("User profile updated!",undefined, undefined); return false;
+                                                                //alertify.alert("User profile updated!", function () {
+                                                                //   // location.reload();
+                                                                //});
+
+
+                                                            }
+
+
+                                                        });
+
+
+
+
+
+
+
+                                                    });
+
+                                                    if ("@Model.Gender"=="F"){
+            $("#rbtnSexFemale").prop('checked', true);
+            $("#rbtnSexMale").prop('checked', false);
+
+        }else{
+            $("#rbtnSexFemale").prop('checked', false);
+            $("#rbtnSexMale").prop('checked', true);
+
+        }
+
+
+    });
+
+    function readURL(input, divImage) {
+        if (input.files && input.files[0]) {
+
+            var fileExtension = input.files[0].name.substring(input.files[0].name.lastIndexOf("."), input.files[0].name.length).toString().toLowerCase();
+
+            //   debugger;
+            if (fileExtension != ".gif"
+                && fileExtension != ".png"
+                && fileExtension != ".jpeg"
+                && fileExtension != ".jpg"
+                && fileExtension != ".bmp") {
+
+                input.value = "";
+
+                $('#' + divImage).attr('src', "#");
+                //  $('#' + divImage).removeClass("displayInLine").addClass("displayNone");
+
+                return false;
+            }
+
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#' + divImage).attr('src', e.target.result);
+                //    $('#' + divImage).removeClass("displayNone").addClass("displayInLine");
+
+
+
+                if ($("#fuLoadImage")[0].files[0] != undefined) {
+                    var formData = new FormData();
+                    var file = $("#fuLoadImage")[0].files[0];
+                    formData.append("Image", file);
+                    formData.append("ImageName", $("#fuLoadImage")[0].files[0].name);
+
+
+                }
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: "/Profile/UploadPhoto",
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.res == "Image not updloaded" || res.res == null) {
+                            //alertify.alert("Image not updloaded");
+                            ShowAlert("Image not updloaded", undefined, undefined); return false;
+                        }
+                        debugger;
+                        $("#btnUpdate").trigger("click");
+
+                    },
+
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        ShowAlert(errorThrown.toString(), undefined, undefined); return false;
+                        //alertify.alert(errorThrown.toString());
+                    }
+                });
+
+
+
+            };
+            reader.readAsDataURL(input.files[0]);
+
+
+
+
+        }
+
+
+    }
+
+
+
+    function readURLDocument(input) {
+        if (input.files && input.files[0]) {
+
+            var fileExtension = input.files[0].name.substring(input.files[0].name.lastIndexOf("."), input.files[0].name.length).toString().toLowerCase();
+
+            debugger;
+            if (fileExtension != ".gif"
+                && fileExtension != ".png"
+                && fileExtension != ".jpeg"
+                && fileExtension != ".jpg"
+                && fileExtension != ".bmp"
+                && fileExtension != ".doc"
+                && fileExtension != ".docx"
+                && fileExtension != ".pdf"
+
+                                            ) {
+
+                input.value = "";
+
+                return false;
+            }
+
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                //  $('#' + divImage).attr('src', e.target.result);
+                //    $('#' + divImage).removeClass("displayNone").addClass("displayInLine");
+
+
+
+                if ($("#fuLoadIdentification")[0].files[0] != undefined) {
+                    debugger;
+                    var formData = new FormData();
+                    var file = $("#fuLoadIdentification")[0].files[0];
+                    formData.append("Identification", file);
+                    formData.append("IdentificationName", $("#fuLoadIdentification")[0].files[0].name);
+                    $("#lblIdentificationName").val($("#fuLoadIdentification")[0].files[0].name);
+                    $("#lblIdentificationName").text($("#fuLoadIdentification")[0].files[0].name);
+
+
+                }
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: "/Profile/UploadIdentification",
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.res == "Identification not updloaded" || res.res == null) {
+                            //alertify.alert("Identification not updloaded");
+                            ShowAlert("Identification not updloaded", undefined, undefined); return false;
+
+                        }
+                        //debugger;
+                        $("#btnUpdate").trigger("click");
+
+                    },
+
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        debugger;
+                        alertify.alert(errorThrown.toString());
+                    }
+                });
+
+
+
+            };
+            reader.readAsDataURL(input.files[0]);
+
+
+
+
+        }
+
+
+    }
+                                            </script>
+                                          
+                                        }
