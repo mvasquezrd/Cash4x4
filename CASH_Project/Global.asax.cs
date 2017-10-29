@@ -12,7 +12,7 @@ namespace CASH
     {
         protected void Application_Start()
         {
-
+            //test
 
 
             AreaRegistration.RegisterAllAreas();
